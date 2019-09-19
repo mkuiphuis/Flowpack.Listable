@@ -40,9 +40,8 @@ class FilterByReferenceOperation extends AbstractOperation
      * {@inheritdoc}
      *
      * @param array $arguments The arguments for this operation.
-     *                         First argument is property to filter by, must be of reference of references type.
-     *                         Second is object to filter by, must be Node.
-     *
+     * First argument is property to filter by, must be of reference of references type.
+     * Second is object to filter by, must be Node.
      * @return void
      * @throws FlowQueryException
      */
@@ -62,7 +61,8 @@ class FilterByReferenceOperation extends AbstractOperation
         foreach ($flowQuery->getContext() as $node) {
             /** @var NodeInterface $node */
             $propertyValue = $node->getProperty($filterByPropertyPath);
-            if ($nodeReference === $propertyValue || (is_array($propertyValue) && in_array($nodeReference, $propertyValue, true))) {
+
+            if ($nodeReference == $propertyValue || (is_array($propertyValue) && in_array($nodeReference, $propertyValue, false))) {
                 $filteredNodes[] = $node;
             }
         }
